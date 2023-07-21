@@ -163,9 +163,9 @@ export default function Home() {
 
             <div className='flex space-x-1 h-full'>
                 {/* Sidebar */}
-                <div style={{height:"calc(100vh - 16px)"}} className={`${menu ? 'hidden' : 'flex'} w-[15%]  pl-2 pt-4 transition duration-200 bg-gray-200  flex-col justify-between pb-2`}>
+                <div style={{height:"calc(100vh - 16px)"}} className={`${menu ? 'hidden' : 'flex'} w-[15%] hidden md:flex  pl-2 pt-4 transition duration-200 bg-gray-200  flex-col justify-between pb-2`}>
                     <div>
-                        <div className='flex mb-4'>
+                        <div className='flex lg:flex-row flex-col items-center mb-4'>
                             <img src={Logo} className='w-8 h-8' />
                             <h1 className='text-2xl font-semibold ml-2'>Code-Share</h1>
                         </div>
@@ -184,7 +184,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div>
+                    <div className='mb-4'>
                         <button
                             onClick={handleCopy}
                             className={
@@ -206,7 +206,7 @@ export default function Home() {
 
                 {/* Main Content */}
 
-                <div className={`${menu ? 'w-[98%]' : 'w-[85%]'}`}>
+                <div className={`${menu ? 'w-[98%]' : 'md:w-[85%] w-[98%]'}`}>
                     {/* Theme dropdown */}
                     <div className='my-2 flex items-center cursor-pointer' onClick={() => setMenu(!menu)}>
                         <div className='bg-gray-300 h-8 mr-4'>
@@ -217,8 +217,8 @@ export default function Home() {
 
 
                     {/* Compiler and output */}
-                    <div className='flex justify-between mt-auto'>
-                        <div className='w-[68%]'>
+                    <div className='flex justify-between mt-auto' style={{height:"calc(100vh - 78px)"}}>
+                        <div className='w-[68%] h-full'>
                             <Compiler
                                 code={code}
                                 language={"javascript"}
@@ -228,7 +228,7 @@ export default function Home() {
                             />
                         </div>
 
-                        <div className=' flex  w-[30%] flex-col mr-4'>
+                        <div className=' flex  w-[30%] flex-col mr-1 md:mr-4'>
                             <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
                                 Output
                             </h1>
