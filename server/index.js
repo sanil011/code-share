@@ -10,14 +10,14 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://code-server-r8cq.onrender.com",
+        origin: "*",
         methods: ["GET", "POST"]
     }
 })
 
-server.prependListener("request", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-});
+// server.prependListener("request", (req, res) => {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+// });
 
 const getAllConnectedClients = (id) => {
     return Array.from(io.sockets.adapter.rooms.get(id) || []).map((socketId) => {
