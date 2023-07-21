@@ -82,11 +82,11 @@ export default function Home() {
 
     const options = {
         method: 'POST',
-        url: "https://onecompiler-apis.p.rapidapi.com/api/v1/run",
+        url: `${process.env.REACT_APP_RAPID_API_URL}`,
         headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': 'f9d2b7849amsh59ab96aaf4748b4p1f4facjsnf9a01b990b57',
-            'X-RapidAPI-Host': 'onecompiler-apis.p.rapidapi.com'
+            'X-RapidAPI-Key': `${process.env.REACT_APP_RAPID_API_KEY}`,
+                'X-RapidAPI-Host': `${process.env.REACT_APP_RAPID_API_HOST}`,
         },
         data: {
             language: 'javascript',
