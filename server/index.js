@@ -15,6 +15,10 @@ const io = new Server(server, {
     }
 })
 
+server.prependListener("request", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+});
+
 const getAllConnectedClients = (id) => {
     return Array.from(io.sockets.adapter.rooms.get(id) || []).map((socketId) => {
         return {
