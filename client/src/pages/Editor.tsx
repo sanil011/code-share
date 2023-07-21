@@ -163,7 +163,7 @@ export default function Home() {
 
             <div className='flex space-x-1 h-full'>
                 {/* Sidebar */}
-                <div style={{height:"calc(100vh - 16px)"}} className={`${menu ? 'hidden' : 'flex'} w-[15%] hidden md:flex  pl-2 pt-4 transition duration-200 bg-gray-200  flex-col justify-between pb-2`}>
+                <div style={{ height: "calc(100vh - 16px)" }} className={`${menu ? 'hidden' : 'md:flex hidden '}   w-[15%]    pl-2 pt-4 transition duration-200 bg-gray-200  flex-col justify-between pb-2`}>
                     <div>
                         <div className='flex lg:flex-row flex-col items-center mb-4'>
                             <img src={Logo} className='w-8 h-8' />
@@ -206,7 +206,7 @@ export default function Home() {
 
                 {/* Main Content */}
 
-                <div className={`${menu ? 'w-[98%]' : 'md:w-[85%] w-[98%]'}`}>
+                <div className={`${menu ? 'w-[98%]' : 'md:w-[85%] w-[98%] '}`}>
                     {/* Theme dropdown */}
                     <div className='my-2 flex items-center cursor-pointer' onClick={() => setMenu(!menu)}>
                         <div className='bg-gray-300 h-8 mr-4'>

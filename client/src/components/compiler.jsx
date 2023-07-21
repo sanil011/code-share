@@ -6,14 +6,14 @@ import Editor from "@monaco-editor/react";
 
 const Compiler = ({  language, code, theme, setCode, socketRef }) => {
   
-  function debounce(func, timeout = 300) {
+  function debounce(func, timeout) {
     let timer;
     return (...args) => {
       clearTimeout(timer);
       timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
   }
-  let sa =debounce((value) => setCode(value), 300);
+  let sa = debounce((value) => setCode(value), 200);
 
   const handleEditorChange = (value) => {
     sa(value);
