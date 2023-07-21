@@ -10,7 +10,7 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "https://code-share-ny9d.onrender.com/",
+        origin: "https://code-server-r8cq.onrender.com",
         methods: ["GET", "POST"]
     }
 })
