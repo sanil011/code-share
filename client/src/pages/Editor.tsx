@@ -208,8 +208,8 @@ export default function Home() {
 
                 <div className={`${menu ? 'w-[98%]' : 'md:w-[85%] w-[98%] '}`}>
                     {/* Theme dropdown */}
-                    <div className='my-2 flex items-center cursor-pointer' onClick={() => setMenu(!menu)}>
-                        <div className='bg-gray-300 h-8 mr-4'>
+                    <div className='my-2 flex items-center cursor-pointer' >
+                        <div className='bg-gray-300 h-8 mr-4' onClick={() => setMenu(!menu)}>
                             <img src={Menu} className='w-8' />
                         </div>
                         <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
