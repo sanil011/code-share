@@ -45,6 +45,12 @@ export default function Home() {
     useEffect(() => {
         const init = async () => {
             socketRef.current = await Socket();
+            socketRef.current.on('connect_error', (err:any) => handleerror(err));
+            socketRef.current.on('connect_failed', (err:any) => handleerror(err));
+            function handleerror(err: any) {
+                toast.error('Socket connection failed, try again!')
+                navigate('/');
+            }
             socketRef.current.emit("join_room", { room: room, username: username });
             toast.success(`Successfully entered a room`);
 
@@ -99,7 +105,7 @@ export default function Home() {
             ]
         }
     };
-
+    console.log(process.env.REACT_APP_RAPID_API_HOST);
     const handlefetch = async () => {
         setProcessing(true);
         let option: any = options;
@@ -110,6 +116,7 @@ export default function Home() {
             setOutputDetails({ time: response.data?.executionTime, status: response.data?.status })
             setProcessing(false);
         } catch (error) {
+            setProcessing(false);
             console.error(error);
         }
         // setOutput(code);
