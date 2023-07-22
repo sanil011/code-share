@@ -5,7 +5,7 @@ import Editor from "@monaco-editor/react";
 
 
 const Compiler = ({  language, code, theme, setCode, socketRef }) => {
-  
+  const ms = useMemo(() => socketRef.current, [socketRef.current])
   function debounce(func, timeout) {
     let timer;
     return (...args) => {
@@ -29,7 +29,7 @@ const Compiler = ({  language, code, theme, setCode, socketRef }) => {
         console.log(socketRef.current)
       });
     }
-  }, [socketRef.current])
+  }, [ms])
 
 
   return (
