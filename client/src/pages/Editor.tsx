@@ -12,10 +12,12 @@ import User from "../components/User";
 import Logo from "../image/logo.svg";
 import toast from 'react-hot-toast';
 import Loading from '../components/Loading';
+import LanguagesDropdown from '../components/LanguageDropdown';
 
 export default function Home() {
     const [output, setOutput] = useState<any>("sanil svdcvhdsvchj");
     const [theme, setTheme] = useState<any>("cobalt");
+    const [language, setLanguage] = useState<string>("javascript")
     const [outputDetails, setOutputDetails] = useState<any>();
     const [processing, setProcessing] = useState(false);
     const { code, setCode, setLoading } = useContext(DataContext);
@@ -164,6 +166,11 @@ export default function Home() {
         }
     }
 
+    const onSelectChange = (val:any) => {
+        console.log("selected Option...", val);
+        setLanguage(val);
+    };
+
 
     if (!socketRef.current) {
         return<Loading/>
@@ -226,6 +233,9 @@ export default function Home() {
                             <img src={Menu} className='w-8' />
                         </div>
                         <ThemeDropdown handleThemeChange={handleThemeChange} theme={theme} />
+                        <div className='ml-4'>
+                        <LanguagesDropdown onSelectChange={onSelectChange} />
+                        </div>
                     </div>
 
 
@@ -234,7 +244,7 @@ export default function Home() {
                         <div className='w-[68%] h-full'>
                             <Compiler
                                 code={code}
-                                language={"javascript"}
+                                language={language}
                                 theme={theme.value}
                                 setCode={setCode}
                                 socketRef={socketRef}
