@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from './pages/Home';
 import Editor from './pages/Editor';
-import { Toaster } from "react-hot-toast"
+import { Toaster } from "react-hot-toast";
+import Loading from "./components/Loading";
 function App() {
   return (
     <>
-      <div>
+      <div >
         <Toaster position='top-center' toastOptions={{
           success: {
             theme : {
@@ -14,6 +15,7 @@ function App() {
           }
         }} ></Toaster>
       </div>
+        {/* <Loading/> */}
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />

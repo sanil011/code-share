@@ -11,18 +11,19 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import User from "../components/User";
 import Logo from "../image/logo.svg";
 import toast from 'react-hot-toast';
+import Loading from '../components/Loading';
 
 export default function Home() {
     const [output, setOutput] = useState<any>("sanil svdcvhdsvchj");
     const [theme, setTheme] = useState<any>("cobalt");
     const [outputDetails, setOutputDetails] = useState<any>();
     const [processing, setProcessing] = useState(false);
-    const { code, setCode } = useContext(DataContext);
+    const { code, setCode, setLoading } = useContext(DataContext);
     const [clients, setClients] = useState<any>([]);
     const navigate = useNavigate();
     const [menu, setMenu] = useState(false);
     const location = useLocation();
-    const socketRef = useRef<any>();
+    const socketRef = useRef<any>(null);
     let username = location?.state?.username
     const { room = "" } = useParams();
 
@@ -164,6 +165,11 @@ export default function Home() {
     }
 
 
+    if (!socketRef.current) {
+        return<Loading/>
+    }
+
+
     return (
         <main className=" bg-white min-h-screen">
             <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
@@ -261,6 +267,6 @@ export default function Home() {
 
                 </div>
             </div>
-        </main>
+        </main> 
     )
 }

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 import Logo from "../image/logo.svg";
 import Bg from "../image/cartoon.jpg"
 import Bg1 from "../image/cartoon1.svg"
-
 export default function Home() {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();

@@ -5,12 +5,15 @@ import React, { createContext, useState, ReactNode, useContext } from "react";
 export const DataContext = createContext<any>(null);
 
 const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [code, setCode] = useState<string>("console.log('Welcome to Code-Share');"); // Specify the type for code (string)
+    const [code, setCode] = useState<string>("console.log('Welcome to Code-Share');"); 
+    const [loading, setLoading] = useState<boolean>(true);
     return (
         <DataContext.Provider
             value={{
                 code,
-                setCode
+                setCode,
+                loading,
+                setLoading
             }}
         >
             {children}
