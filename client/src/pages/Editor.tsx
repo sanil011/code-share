@@ -205,7 +205,7 @@ export default function Home() {
     };
 
 
-    if (!socketRef.current) {
+    if (clients.length == 0) {
         return<Loading/>
     }
   
