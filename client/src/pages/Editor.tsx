@@ -13,6 +13,7 @@ import Logo from "../image/logo.svg";
 import toast from 'react-hot-toast';
 import Loading from '../components/Loading';
 import LanguagesDropdown from '../components/LanguageDropdown';
+import DoubtSection from '../components/DoubtSection';
 
 export default function Home() {
     const [output, setOutput] = useState<any>("sanil svdcvhdsvchj");
@@ -25,9 +26,13 @@ export default function Home() {
     const navigate = useNavigate();
     const [menu, setMenu] = useState(false);
     const location = useLocation();
+    const [isChatShown, setChatShown] = useState(false);
+    const [allDoubts, setAllDoubts] = useState<any>([]);
+    const [doubt, setDoubt] = useState("");
     const socketRef = useRef<any>(null);
     let username = location?.state?.username
     const { room = "" } = useParams();
+    const doubtRef = useRef<any>(null);
 
 
     const classnames = (...args: any) => {
@@ -43,6 +48,12 @@ export default function Home() {
     type LeaveProps = {
         socketId: any;
         username: any
+    }
+
+    type DoubtProps = {
+        socketId: any;
+        username: any;
+        doubts:any
     }
 
     useEffect(() => {
@@ -62,6 +73,19 @@ export default function Home() {
                 setClients(clients);
                 if (username !== location?.state?.username) {
                     toast.success(`${username} joined the room.`)
+                }
+            })
+
+
+            // Listening for doubt event
+            socketRef.current.on("doubt_message", ({ doubts, username, socketId }:DoubtProps) => {
+                setAllDoubts(doubts);
+                console.log(allDoubts,"sanil",doubts);
+                if (username !== location?.state?.username) {
+                    // toast.success(`${username} joined the room.`)
+                    toast.success(`${username} asked a doubt!`)
+                } else {
+                    toast.success(`doubt is send!`)
                 }
             })
 
@@ -108,7 +132,7 @@ export default function Home() {
             ]
         }
     };
-    console.log(process.env.REACT_APP_RAPID_API_HOST);
+    // console.log(process.env.REACT_APP_RAPID_API_HOST);
     const handlefetch = async () => {
         setProcessing(true);
         let option: any = options;
@@ -157,6 +181,15 @@ export default function Home() {
         toast.success('You leaved the Room');
     }
 
+    const  askDoubt= async(e:any) => {
+        e.preventDefault();
+        socketRef.current.emit("doubt", {
+            room,
+            username:username,
+            doubt
+        })
+        setDoubt("");
+    }
     const handleCopy = async () => {
         try {
             await window.navigator.clipboard.writeText(room);
@@ -175,10 +208,12 @@ export default function Home() {
     if (!socketRef.current) {
         return<Loading/>
     }
+  
 
+  
 
     return (
-        <main className=" bg-white min-h-screen">
+        <main className=" bg-white min-h-screen relative">
             <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
 
             <div className='flex space-x-1 h-full'>
@@ -236,6 +271,16 @@ export default function Home() {
                         <div className='ml-4'>
                         <LanguagesDropdown onSelectChange={onSelectChange} />
                         </div>
+                        <button
+                            onClick={()=>setChatShown(!isChatShown)}
+                            // disabled={!code}
+                            className={classnames(
+                                "ml-4 border-2 border-black z-10 text-black rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0",
+                                
+                            )}
+                        >
+                            Doubt section
+                        </button>
                     </div>
 
 
@@ -251,7 +296,7 @@ export default function Home() {
                             />
                         </div>
 
-                        <div className=' flex  w-[30%] flex-col mr-1 md:mr-4'>
+                        <div className='flex  w-[30%] flex-col mr-1 md:mr-4'>
                             <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
                                 Output
                             </h1>
@@ -277,6 +322,9 @@ export default function Home() {
 
                 </div>
             </div>
+
+                            {isChatShown && <DoubtSection  status={setChatShown} setDoubt={setDoubt} doubt={doubt} askDoubt={askDoubt} allDoubts={allDoubts} />}
+
         </main> 
     )
 }

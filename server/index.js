@@ -5,7 +5,7 @@ const cors = require("cors");
 const { Server } = require('socket.io');
 
 app.use(cors());
-
+console.log("asdfghjkl")
 // create server
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -15,9 +15,6 @@ const io = new Server(server, {
     }
 })
 
-// server.prependListener("request", (req, res) => {
-//     res.setHeader("Access-Control-Allow-Origin", "*");
-// });
 
 const getAllConnectedClients = (id) => {
     return Array.from(io.sockets.adapter.rooms.get(id) || []).map((socketId) => {
@@ -29,6 +26,8 @@ const getAllConnectedClients = (id) => {
 }
 
 const userSocketMap = {};
+const doubts = [];
+
 
 io.on("connection", (socket) => {
  
@@ -44,6 +43,19 @@ io.on("connection", (socket) => {
             });
         })
         console.log(clients)
+    })
+
+    socket.on("doubt", ({ room, username, doubt }) => {
+        doubts.push({name : username,msg:doubt});
+        console.log(doubts);
+        const clients = getAllConnectedClients(room);
+        clients.forEach(({ socketId }) => {
+            io.to(socketId).emit("doubt_message", {
+                doubts,
+                username,
+                socketId: socket.id
+            });
+        })
     })
 
     socket.on("send_message", (data) => {
