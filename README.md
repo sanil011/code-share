@@ -18,6 +18,18 @@
 <img width="1440" alt="Screenshot 2023-07-24 at 12 24 32 AM" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png">
 
 
+<h2>🧐 What it does</h2>
+
+*  CodeShare is a website solely designed to make learning fun and easy.
+*  The editing code feature can be handled both by Admin and User so that user can also give the input and can make the code optimal.
+*  Ask a doubt in doubt section would let admin know on which line the user has a doubt.
+*  User just need to enter the Code Room Unique Id Shared by their Admin and can get in and learn without any hindrance.
+*  All the joinies will get alert toaster regarding events like joining of a new member or someone asked a doubt, so that everyone can 
+   see what is happening!
+*  Still in developing mode i will add more features soon.
+
+<img width="1440" alt="Screenshot 2023-07-24 at 12 24 32 AM" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png">
+
 ## How we built it 🚧
 
 - We used ReactJS for the website.
@@ -26,15 +38,6 @@
 - We use Express.js to build our backend server.
 - We used render for the deployment.
 
-<img width="1440" alt="Screenshot 2023-07-24 at 12 24 32 AM" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png">
-
-
-<h2>🧐 Features</h2>
-
-*  Share the roomId to anyone then he/she can see the code.
-*  Realtime code editing and anyone can edit the code within a room.
-*  Also compile and see the output.
-*  Still in developing mode i will add more features soon.
 
 <img width="1440" alt="Screenshot 2023-07-24 at 12 24 32 AM" src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png">
 
@@ -43,5 +46,5 @@
 - **Frontend:** ReactJs, SocketIO
 - **Backend:** Express
 - **Version Control:** Git and GitHub
-- **Hosting:** Render and GitHub Pages
+- **Hosting:** Render 
 - **Code Editor and tools**: VS Code
