@@ -9,10 +9,10 @@ const ROOT_CSS = css({
 function DoubtSection({ status, setDoubt, doubt, askDoubt, allDoubts }) {
     const dummy = useRef();
     return (
-        <div style={{ height: "calc(100vh - 16px)" }} className='flex flex-col justify-between bg-gray-200  absolute top-4 right-0  z-10 w-[27%]'>
+        <div style={{ height: "calc(100vh - 16px)" }} className='flex flex-col justify-between bg-gray-200  absolute top-4 right-0  z-10 lg:w-[27%] md:w-[40%] sm:w-[45%] w-[55%]'>
             <div>
                 <div className="flex w-full items-center justify-between p-2">
-                    <h3 className='text-xl font-semibold '>Doubt Box</h3>
+                    <h3 className='text-xl font-semibold'>Doubt Box</h3>
                     <button
                         onClick={() => status(false)}
                         className=" px-3 py-1 bg-white rounded-md text-2xl" >

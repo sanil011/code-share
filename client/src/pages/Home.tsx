@@ -39,7 +39,7 @@ export default function Home() {
                 <img src={Bg} width={300} height={300} />
             </div>
             <div className='flex flex-col justify-center items-center' style={{ height: 'calc(100vh - 76px)' }}>
-                <div className='flex flex-col justify-between py-10 items-center w-[40%] h-[45%] rounded-lg  mx-auto gap-4  bg-[#1C1C1C]'>
+                <div className='flex flex-col justify-between py-10 items-center lg:w-[40%] md:w-[50%] sm:w-[95%] w-[95%] h-[45%] rounded-lg  mx-auto gap-4  bg-[#1C1C1C]'>
                     <h3 className='text-2xl font-semibold text-center text-white'>Paste Invitation Room Id</h3>
                     <div className='flex flex-col  gap-4'>
                         <input type='text' className=' border outline-none border-[#B67844] min-w-[22em] h-12 rounded-lg pl-2 bg-[#2C303A] text-white' value={username} placeholder='Username' onChange={(e) => setUsername(e.target.value)} />
@@ -47,7 +47,7 @@ export default function Home() {
                     </div>
                     <div className='flex justify-center items-center w-full'>
                         <p className='text-white pr-6'>If you don't have any invite create a room  <span onClick={handleClickNew} className='text-pink-500 ml-2 cursor-pointer'>new room</span></p>
-                        <button className='py-2 px-4 rounded-md border-none text-white bg-pink-500' onClick={joinRoom}>Join a room</button>
+                        <button className='md:py-2 py-1 sm:px-4 px-2 rounded-md border-none text-white bg-pink-500' onClick={joinRoom}>Join a room</button>
                     </div>
                 </div>
             </div>
