@@ -5,7 +5,7 @@ const cors = require("cors");
 const { Server } = require('socket.io');
 
 app.use(cors());
-console.log("asdfghjkl")
+
 // create server
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -46,12 +46,12 @@ io.on("connection", (socket) => {
     })
 
     socket.on("doubt", ({ room, username, doubt }) => {
-        doubts.push({name : username,msg:doubt});
-        console.log(doubts);
+        doubts.push({ name: username, msg: doubt });
+        let db = { name: username, msg: doubt };
         const clients = getAllConnectedClients(room);
         clients.forEach(({ socketId }) => {
             io.to(socketId).emit("doubt_message", {
-                doubts,
+                db,
                 username,
                 socketId: socket.id
             });

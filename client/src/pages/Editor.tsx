@@ -53,7 +53,7 @@ export default function Home() {
     type DoubtProps = {
         socketId: any;
         username: any;
-        doubts:any
+        db:any
     }
 
     useEffect(() => {
@@ -78,9 +78,9 @@ export default function Home() {
 
 
             // Listening for doubt event
-            socketRef.current.on("doubt_message", ({ doubts, username, socketId }:DoubtProps) => {
-                setAllDoubts(doubts);
-                console.log(allDoubts,"sanil",doubts);
+            socketRef.current.on("doubt_message", ({ db, username, socketId }:DoubtProps) => {
+                setAllDoubts((prev:[])=>[...prev, db]);
+                console.log(allDoubts)
                 if (username !== location?.state?.username) {
                     // toast.success(`${username} joined the room.`)
                     toast.success(`${username} asked a doubt!`)
