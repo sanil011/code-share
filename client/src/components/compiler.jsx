@@ -13,7 +13,7 @@ const Compiler = ({  language, code, theme, setCode, socketRef }) => {
       timer = setTimeout(() => { func.apply(this, args); }, timeout);
     };
   }
-  let sa = debounce((value) => setCode(value), 200);
+  let sa = debounce((value) => setCode(value), 500);
 
   const handleEditorChange = (value) => {
     sa(value);
