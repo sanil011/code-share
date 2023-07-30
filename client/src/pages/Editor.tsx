@@ -16,7 +16,7 @@ import LanguagesDropdown from '../components/LanguageDropdown';
 import DoubtSection from '../components/DoubtSection';
 
 export default function Home() {
-    const [output, setOutput] = useState<any>("sanil svdcvhdsvchj");
+    const [output, setOutput] = useState<any>("welcome to code-share");
     const [theme, setTheme] = useState<any>("cobalt");
     const [language, setLanguage] = useState<string>("javascript")
     const [outputDetails, setOutputDetails] = useState<any>();
