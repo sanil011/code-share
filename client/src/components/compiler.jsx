@@ -4,19 +4,19 @@ import Editor from "@monaco-editor/react";
 
 
 
-const Compiler = ({  language, code, theme, setCode, socketRef }) => {
+const Compiler = ({  language, code, theme, setCode, socketRef, sendMessage }) => {
   const ms = useMemo(() => socketRef.current, [socketRef.current])
-  function debounce(func, timeout) {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
-  }
-  let sa = debounce((value) => setCode(value), 500);
+  // function debounce(func, timeout) {
+  //   let timer;
+  //   return (...args) => {
+  //     clearTimeout(timer);
+  //     timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  //   };
+  // }
+  // let sa = debounce((value) => setCode(value), 500);
 
   const handleEditorChange = (value) => {
-    sa(value);
+    sendMessage(value);
   }
 
 

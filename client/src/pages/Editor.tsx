@@ -166,11 +166,7 @@ export default function Home() {
     }, []);
 
 
-    // Socket
-    useEffect(() => {
-        sendMessage();
-    }, [code])
-
+  
 
     const sendMessage = async () => {
         await socketRef.current?.emit("send_message", { room: room, code1: code });
@@ -288,6 +284,7 @@ export default function Home() {
                     <div className='flex justify-between mt-auto' style={{height:"calc(100vh - 78px)"}}>
                         <div className='w-[68%] h-full'>
                             <Compiler
+                                sendMessage={sendMessage}
                                 code={code}
                                 language={language}
                                 theme={theme.value}
